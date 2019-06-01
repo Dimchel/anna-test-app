@@ -3,8 +3,8 @@ package com.dimchel.annatest.di
 import android.app.Application
 import com.dimchel.annatest.common.AppSchedulers
 import com.dimchel.annatest.common.AppSchedulersImpl
-import com.dimchel.annatest.data.repositories.RatesRepository
-import com.dimchel.annatest.data.repositories.RatesRepositoryImpl
+import com.dimchel.annatest.data.repositories.rates.RatesRepository
+import com.dimchel.annatest.data.repositories.rates.RatesRepositoryImpl
 import com.dimchel.annatest.features.exchange.ExchangeFragment
 import dagger.Binds
 import dagger.BindsInstance
