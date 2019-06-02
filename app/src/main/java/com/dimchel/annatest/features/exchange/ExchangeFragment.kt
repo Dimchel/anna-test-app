@@ -12,11 +12,11 @@ import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.dimchel.annatest.AnnaApp
-import com.dimchel.annatest.R
 import com.dimchel.annatest.common.visible
 import com.dimchel.annatest.data.repositories.rates.RateModel
 import kotlinx.android.synthetic.main.fragment_exchange.*
 import javax.inject.Inject
+
 
 class ExchangeFragment : MvpAppCompatFragment(), ExchangeView {
 
@@ -38,7 +38,7 @@ class ExchangeFragment : MvpAppCompatFragment(), ExchangeView {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? =
-        inflater.inflate(R.layout.fragment_exchange, container, false)
+        inflater.inflate(com.dimchel.annatest.R.layout.fragment_exchange, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -65,7 +65,13 @@ class ExchangeFragment : MvpAppCompatFragment(), ExchangeView {
             override fun afterTextChanged(text: Editable?) = Unit
             override fun beforeTextChanged(text: CharSequence?, start: Int, count: Int, after: Int) = Unit
             override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                presenter.onAmountChanged(text.toString().toDouble())
+                if (text.isNullOrEmpty()) {
+                    presenter.onAmountChanged(0.0)
+                } else {
+                    try {
+                        presenter.onAmountChanged(text.toString().toDouble())
+                    } catch (exception: NumberFormatException) {}
+                }
             }
         })
     }
@@ -102,6 +108,6 @@ class ExchangeFragment : MvpAppCompatFragment(), ExchangeView {
         exchange_output_spinner.adapter = ratesAdapter
     }
     override fun updateExchangedAmount(exchangedAmount: Double) {
-        exchange_output_textview.text = exchangedAmount.toString()
+        exchange_output_textview.text = String.format("%.2f", exchangedAmount)
     }
 }

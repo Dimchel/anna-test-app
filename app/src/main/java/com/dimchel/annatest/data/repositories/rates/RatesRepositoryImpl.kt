@@ -10,7 +10,9 @@ class RatesRepositoryImpl @Inject constructor(
 
     override fun getEuroRates(): Observable<List<RateModel>> =
         annaApiProvider.requestEuroRates().map {
-            it.cube.cubes.mapToRatesModelsList()
-        }
+            val result = it.cube.cubes.mapToRatesModelsList().toMutableList()
+            result.add(0, RateModel("EUR", 1.0))
 
+            result
+        }
 }
