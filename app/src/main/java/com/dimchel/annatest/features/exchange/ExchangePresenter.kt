@@ -65,6 +65,10 @@ class ExchangePresenter @Inject constructor(
         requestRates()
     }
 
+    fun onToAnimationClicked() {
+        viewState.navigateToAnimationScreen()
+    }
+
     // ===========================================================
     // Common
     // ===========================================================

@@ -54,6 +54,11 @@ dependencies {
     implementation "tech.schoolhelper:moxy-x-androidx:$moxy_ver"
     kapt "tech.schoolhelper:moxy-x-compiler:$moxy_ver"
 
+    // Navigation
+    def navigation_version = "2.1.0-alpha04"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
+
     // Network
     def retrofit_ver = "2.4.0"
     def okhttp_ver = "3.10.0"

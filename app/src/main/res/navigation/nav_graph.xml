@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/exchangeFragment">
+
+    <fragment
+        android:id="@+id/exchangeFragment"
+        android:name="com.dimchel.annatest.features.exchange.ExchangeFragment"
+        android:label="ExchangeFragment"
+        tools:layout="@layout/fragment_exchange">
+
+        <action
+            android:id="@+id/action_exchangeFragment_to_animationFragment"
+            app:destination="@id/animationFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/animationFragment"
+        android:name="com.dimchel.annatest.features.animation.AnimationFragment"
+        android:label="AnimationFragment"
+        tools:layout="@layout/fragment_animation" />
+
+</navigation>

@@ -12,6 +12,8 @@ import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.dimchel.annatest.AnnaApp
+import com.dimchel.annatest.R
+import com.dimchel.annatest.common.navController
 import com.dimchel.annatest.common.visible
 import com.dimchel.annatest.data.repositories.rates.RateModel
 import kotlinx.android.synthetic.main.fragment_exchange.*
@@ -74,6 +76,10 @@ class ExchangeFragment : MvpAppCompatFragment(), ExchangeView {
                 }
             }
         })
+
+        exchange_to_animation_button.setOnClickListener {
+            presenter.onToAnimationClicked()
+        }
     }
 
     override fun updateExchangeViewState(exchangeViewState: ExchangeViewState) {
@@ -107,7 +113,12 @@ class ExchangeFragment : MvpAppCompatFragment(), ExchangeView {
         exchange_input_spinner.adapter = ratesAdapter
         exchange_output_spinner.adapter = ratesAdapter
     }
+
     override fun updateExchangedAmount(exchangedAmount: Double) {
         exchange_output_textview.text = String.format("%.2f", exchangedAmount)
+    }
+
+    override fun navigateToAnimationScreen() {
+        navController().navigate(R.id.action_exchangeFragment_to_animationFragment)
     }
 }

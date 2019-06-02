@@ -1,8 +1,7 @@
 package com.dimchel.annatest
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.dimchel.annatest.features.exchange.ExchangeFragment
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -10,15 +9,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-
-        if (savedInstanceState == null) {
-            supportFragmentManager
-                .beginTransaction()
-                .replace(
-                    R.id.app_container,
-                    ExchangeFragment()
-                )
-                .commit()
-        }
     }
 }
