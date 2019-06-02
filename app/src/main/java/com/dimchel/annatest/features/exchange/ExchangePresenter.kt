@@ -1,6 +1,5 @@
 package com.dimchel.annatest.features.exchange
 
-import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.dimchel.annatest.data.repositories.rates.RateModel
@@ -22,6 +21,7 @@ class ExchangePresenter @Inject constructor(
     }
 
     private var ratesDisposable: Disposable? = null
+
     private lateinit var cachedRates: List<RateModel>
     private lateinit var currentInputRate: RateModel
     private lateinit var currentOutputRate: RateModel
@@ -82,15 +82,18 @@ class ExchangePresenter @Inject constructor(
         viewState.updateExchangeViewState(ExchangeViewState.LOADING)
 
         ratesDisposable = ratesRepository.getEuroRates().subscribe({
-            Log.v("123123", "3")
             cachedRates = it
             currentInputRate = cachedRates.first()
             currentOutputRate = cachedRates.first()
 
             viewState.updateExchangeViewState(ExchangeViewState.RATES)
             viewState.updateRatesList(cachedRates)
+
+            ratesDisposable?.dispose()
         }, {
             viewState.updateExchangeViewState(ExchangeViewState.ERROR)
+
+            ratesDisposable?.dispose()
         })
     }
 }
